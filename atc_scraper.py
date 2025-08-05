@@ -67,6 +67,11 @@ class ATCScraper:
         return self._extract_atc_codes_from_text(atc_paragraph, self.code_pattern)
 
     def obtain_atc_subcategories(self, atc_category: ATCCode) -> list[ATCCode]:
+        """
+        Recursively obtain subcategories from ATCCode category
+        :param atc_category: ATCCode to parse and use url
+        :return the list of extracted ATCCode
+        """
         if atc_category.url in self.visited:
             return []
         self.visited.add(atc_category.url)
