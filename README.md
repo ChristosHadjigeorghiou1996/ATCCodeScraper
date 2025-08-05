@@ -7,6 +7,7 @@ This project extracts the **ATC codes (Anatomical Therapeutic Chemical)** classi
 - Extracts ATC Code, Name and link to corresponding category
 - Save data to CSV file
 - Print the csv file in a pretty table to view
+- Map the code to the main category according to the first code letter
 
 ## Requirements
 

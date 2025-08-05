@@ -88,6 +88,19 @@ class ATCScraper:
             atc_subcategories.extend(self.obtain_atc_subcategories(subcategory))
         return atc_subcategories
 
+    def map_code_to_category(self, code: str) -> str|ATCCode:
+        """
+        Map a string code to atc categories given first letter
+        :param code: string of code to check if it matches in category
+        :return mapped ATCCode or "Unknown" otherwise 
+        """
+        atc_categories = self.obtain_atc_categories()
+        match = list(atc_category for atc_category in atc_categories if code[0] == atc_category.code)
+        if match:
+            print(f"Code {code} -> {match[0]}")
+            return match[0]
+        return "Unknown"
+
 
 if __name__ == "__main__":
     atc_scraper = ATCScraper()
@@ -103,4 +116,6 @@ if __name__ == "__main__":
         FileHelper.save_to_csv(filepath, extracted_atc_categories)
     else:
         rows = FileHelper.read_from_csv(filepath)
-        print(tabulate(rows[1:], headers=rows[0], tablefmt="grid"))
+        # print(tabulate(rows[1:], headers=rows[0], tablefmt="grid"))
+
+    code_mapping = atc_scraper.map_code_to_category('AB0123')
